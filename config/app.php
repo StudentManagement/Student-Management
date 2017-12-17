@@ -65,7 +65,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    //'timezone' => 'UTC',
+    'timezone' => 'Asia/Colombo',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +168,7 @@ return [
         /*
          * Package Service Providers...
          */
+        TCG\Voyager\VoyagerServiceProvider::class,
 
         /*
          * Application Service Providers...
