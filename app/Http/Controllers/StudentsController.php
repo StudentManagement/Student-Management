@@ -53,4 +53,9 @@ class StudentsController extends Controller
     {
         return view('students.media');
     }
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('students.edit',compact('user'));
+    }
 }

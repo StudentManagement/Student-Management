@@ -22,9 +22,10 @@ class ResultsController extends Controller {
 					$flag = false;
 					continue;}
 				$csv_data = new Result;
-				$csv_data->reg_number = $data[0];
+				$csv_data->reg_no = $data[0];
 				$csv_data->exam_id = $data[1];
 				$csv_data->marks = $data[2];
+				$csv_data->marker_id = $data[3];
 				$csv_data->save();
 			}
 			fclose($file);

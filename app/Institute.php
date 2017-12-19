@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Result extends Model
+class Institute extends Model
 {
-    protected $table = 'results';
-
+    //
 }
