@@ -20,28 +20,31 @@ $user_avatar = Auth::user()->avatar;
 
   <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
-  <p class="text-muted text-center">Reg No</p>
+  <p class="text-muted text-center">{{ Auth::user()->reg_no }}</p>
 
   <ul class="list-group list-group-unbordered">
     <li class="list-group-item">
-      <b>Address</b> <a class="pull-right">1,322</a>
+      <b>Address</b> <a class="pull-right">{{ Auth::user()->address }}</a>
     </li>
     <li class="list-group-item">
-      <b>NIC</b> <a class="pull-right">543</a>
+      <b>Email</b> <a class="pull-right">{{ Auth::user()->email }}</a>
     </li>
     <li class="list-group-item">
-      <b>Contact Number</b> <a class="pull-right">13,287</a>
+      <b>NIC</b> <a class="pull-right">{{ Auth::user()->nic }}</a>
     </li>
     <li class="list-group-item">
-      <b>Institute</b> <a class="pull-right">13,287</a>
+      <b>Contact Number</b> <a class="pull-right">{{ Auth::user()->contact_no }}</a>
     </li>
     <li class="list-group-item">
-      <b>A/L Batch</b> <a class="pull-right">13,287</a>
+      <b>Institute</b> <a class="pull-right">{{ Auth::user()->institute }}</a>
+    </li>
+    <li class="list-group-item">
+      <b>A/L Batch</b> <a class="pull-right">{{ Auth::user()->al_batch }}</a>
     </li>
 
   </ul>
 
-  <a href="#" class="btn btn-primary btn-block"><b>Edit</b></a>
+  <a href="profile/{{ Auth::user()->id }}" class="btn btn-primary btn-block"><b>Edit</b></a>
 </div>
 <!-- /.box-body -->
 </div>

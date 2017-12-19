@@ -28,4 +28,6 @@ Route::get('/home/dashboard','StudentsController@dashboard');
 Route::get('/home/profile','StudentsController@profile');
 Route::get('/home/media','StudentsController@media');
 
+Route::get('/home/profile/{id}','StudentsController@edit');
+
 
