@@ -10,19 +10,17 @@ class CreateUsersTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up()
-	{
-		Schema::create('users', function(Blueprint $table)
-		{
+	public function up() {
+		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('role_id')->nullable();
+			//$table->integer('role_id')->nullable();
 			$table->string('name', 191);
 			$table->string('email', 191)->unique();
 			$table->string('avatar', 191)->nullable()->default('users/default.png');
 			$table->string('password', 191);
 			$table->string('remember_token', 100)->nullable();
 			$table->timestamps();
-			$table->integer('reg_no')->unique();
+			$table->integer('reg_no')->nullable();
 			$table->text('address', 65535)->nullable();
 			$table->integer('contact_no')->nullable();
 			$table->integer('nic')->nullable();
@@ -32,14 +30,12 @@ class CreateUsersTable extends Migration {
 		});
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
+	public function down() {
 		Schema::drop('users');
 	}
 
