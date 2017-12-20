@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 use App\User;
@@ -53,9 +55,9 @@ class StudentsController extends Controller
     {
         return view('students.media');
     }
-    public function edit($id)
+    public function edit()
     {
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
         return view('students.edit',compact('user'));
     }
 }

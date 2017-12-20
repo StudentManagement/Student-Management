@@ -44,7 +44,7 @@ $user_avatar = Auth::user()->avatar;
 
   </ul>
 
-  <a href="profile/{{ Auth::user()->id }}" class="btn btn-primary btn-block"><b>Edit</b></a>
+  <a href="profile/edit" class="btn btn-primary btn-block"><b>Edit</b></a>
 </div>
 <!-- /.box-body -->
 </div>

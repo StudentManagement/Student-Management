@@ -28,7 +28,7 @@ Route::get('/home/dashboard','StudentsController@dashboard');
 Route::get('/home/profile','StudentsController@profile');
 Route::get('/home/media','StudentsController@media');
 
-Route::get('/home/profile/{id}','StudentsController@edit');
+Route::get('/home/profile/edit','StudentsController@edit');
 
 
 Route::post('/upload', 'ResultsController@csvReader');

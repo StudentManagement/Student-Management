@@ -10,16 +10,15 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('reg_no') ? ' has-error' : '' }}">
+                            <label for="reg_no" class="col-md-4 control-label">Registration Number</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="reg_no" type="text" class="form-control" name="reg_no" value="{{ old('reg_no') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('reg_no'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('reg_no') }}</strong>
                                     </span>
                                 @endif
                             </div>
