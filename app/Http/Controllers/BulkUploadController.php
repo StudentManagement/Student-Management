@@ -40,7 +40,9 @@ class BulkUploadController extends Controller {
 		$upload = $request->file('upload-file');
 		$filePath = $upload->getRealPath();
 
+
 		if (($file = fopen($filePath, 'r')) !== FALSE) {
+
 			$flag = true;
 			while (($data = fgetcsv($file, 1000, ',')) !== FALSE) {
 				if ($flag) {
@@ -58,6 +60,7 @@ class BulkUploadController extends Controller {
 				$csv_data->al_batch = $data[7];
 				$csv_data->avatar = "users/default.png";
 				$csv_data->password = bcrypt('abc123');
+				$csv_data->gender = $data[8];
 				$csv_data->save();
 			}
 			fclose($file);
