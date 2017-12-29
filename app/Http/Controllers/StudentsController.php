@@ -81,7 +81,7 @@ class StudentsController extends Controller
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(256, 256)->save( public_path().'\storage\users\\' . $filename );
-            $user->avatar = '/users/' . $filename  ;
+            $user->avatar = 'users/' . $filename;
             $user->save();      
         }
         $user->save();        

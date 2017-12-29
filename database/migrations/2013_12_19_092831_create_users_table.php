@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('institute_id')->nullable();
 			$table->softDeletes();
 			$table->integer('al_batch')->nullable();
-			$table->string('gender');
+			$table->string('gender')->nullable();
 		});
 	}
 
