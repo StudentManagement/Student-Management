@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-4">
                 @can('add',app($dataType->model_name))
-                    <form action="/upload" method="post" enctype="multipart/form-data">
+                    <form action="/uploadResults" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="row">

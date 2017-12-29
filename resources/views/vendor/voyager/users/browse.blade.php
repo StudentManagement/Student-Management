@@ -4,19 +4,45 @@
 
 @section('page_header')
     <div class="container-fluid">
-        <h1 class="page-title">
+                <h1 class="page-title">
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
         </h1>
-        @can('add',app($dataType->model_name))
-            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
-                <i class="voyager-plus"></i> <span>{{ __('voyager.generic.add_new') }}</span>
-            </a>
-        @endcan
-        @can('delete',app($dataType->model_name))
-            @include('voyager::partials.bulk-delete')
-        @endcan
-        @include('voyager::multilingual.language-selector')
-    </div>
+        <div class="row">
+            <div class="col-md-2">
+                @can('add',app($dataType->model_name))
+                    <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
+                        <i class="voyager-plus"></i> <span>{{ __('voyager.generic.add_new') }}</span>
+                    </a>
+                @endcan
+
+                @can('delete',app($dataType->model_name))
+                    @include('voyager::partials.bulk-delete')
+                @endcan
+                @include('voyager::multilingual.language-selector')
+            </div>
+            <div class="col-md-4">
+                @can('add',app($dataType->model_name))
+                    <form action="/uploadUsers" method="post" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input class="btn btn-success btn-add-new" type="submit" value="Bulk Upload" name="submit">
+                                </div>
+                                <div class="col-md-8">
+                                    {{-- <label for="upload-file"></label> --}}
+                                    <input type="file" name="upload-file" class="form-control"  required ">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                @endcan
+            </div>
+
+        </div>
+
+
 @stop
 
 @section('content')
@@ -49,6 +75,9 @@
                                 </div>
                             </form>
                         @endif
+
+
+
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
@@ -87,7 +116,7 @@
                                         @endcan
                                         @foreach($dataType->browseRows as $row)
                                             <td>
-                                                <?php $options = json_decode($row->details); ?>
+                                                <?php $options = json_decode($row->details);?>
                                                 @if($row->type == 'image')
                                                     <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
                                                 @elseif($row->type == 'relationship')

@@ -1,53 +1,58 @@
 @extends('layouts.student_layout')
 
 @section('content')
-<form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Avatar</label>
+<?php
+$user_avatar = Voyager::image(Auth::user()->avatar);
+if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->avatar, 0, 8) == 'https://')) {
+  $user_avatar = Auth::user()->avatar;
+}
+?>
+<h3>User Details</h3>
+<form class="form-horizontal" action="/home/profile/edit" method="POST">
+  {{ csrf_field() }}
+    <div class="box-body box-profile">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="Name" value="{{ $user->name }}" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+          <div class="col-sm-10">
+          <img src="{{ $user_avatar }}" style="max-width: 200px;max-height: 200px">
+          {{-- <label for="avatar" class="col-sm-2 control-label">Avatar</label> --}}
 
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="avatar" placeholder="Avatar" value="{{ $user->avatar }}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="email" class="col-sm-2 control-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" placeholder="Email" value="{{ $user->email }}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="address" class="col-sm-2 control-label">Address</label>
+            <input type="file" class="form-control" id="avatar" placeholder="Avatar" value="{{ $user->avatar }}" name="avatar">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Email" value="{{ $user->email }}" name="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address" class="col-sm-2 control-label">Address</label>
 
-                  <div class="col-sm-10">
-                    <textarea name="address" class="form-control">{{ $user->address }}</textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="nic" class="col-sm-2 control-label">NIC</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nic" placeholder="NIC" value="{{ $user->nic }}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="contact" class="col-sm-2 control-label">Contact No.</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="contact" placeholder="Contact" value="{{ $user->contact_no }}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" value="{{ $user->password }}">
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Sign in</button>
-              </div>
-              <!-- /.box-footer -->
+          <div class="col-sm-10">
+            <textarea name="address" class="form-control" name="address">{{ $user->address }}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nic" class="col-sm-2 control-label">NIC</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="nic" placeholder="NIC" value="{{ $user->nic }}" name="nic">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact" class="col-sm-2 control-label">Contact No.</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="contact" placeholder="Contact" value="{{ $user->contact_no }}" name="contact">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success pull-right">Update</button>
+    </div>
 </form>
 
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Khill\Lavacharts\Lavacharts;
 use \Lava as Lava;
+use Image;
 
 class StudentsController extends Controller
 {
@@ -42,9 +43,7 @@ class StudentsController extends Controller
         ]);
     }
     $chart = Lava::LineChart('MyStocks', $stocksTable);
-
-
-
+    
         return view('students.dashboard');
     }
         public function profile()
@@ -57,7 +56,22 @@ class StudentsController extends Controller
     }
     public function edit()
     {
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         return view('students.edit',compact('user'));
+    }
+
+        public function update(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->address = $request->get('address');
+        $user->nic = $request->get('nic');
+        $user->contact_no = $request->get('contact');
+        if ($request->hasfile('avatar')) {
+          // $user->avatar = $request->get('avatar');        
+        }
+        $user->save();        
+        return redirect('/home/profile');
     }
 }
