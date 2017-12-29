@@ -10,31 +10,31 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        $setting = $this->findSetting('front.title');
+        $setting = $this->findSetting('site.title');
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Title',
-                'value'        => 'Student Management',
+                'value'        => 'Site Title',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
-                'group'        => 'front',
+                'group'        => 'Site',
             ])->save();
         }
 
-        $setting = $this->findSetting('front.description');
+        $setting = $this->findSetting('site.description');
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Description',
-                'value'        => 'Student Management',
+                'value'        => 'Site Description',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
-                'group'        => 'front',
+                'group'        => 'Site',
             ])->save();
         }
 
-        $setting = $this->findSetting('front.logo');
+        $setting = $this->findSetting('site.logo');
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Logo',
@@ -42,11 +42,11 @@ class SettingsTableSeeder extends Seeder
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
-                'group'        => 'front',
+                'group'        => 'Site',
             ])->save();
         }
 
-        $setting = $this->findSetting('front.google_analytics_tracking_id');
+        $setting = $this->findSetting('site.google_analytics_tracking_id');
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Google Analytics Tracking ID',
@@ -54,7 +54,7 @@ class SettingsTableSeeder extends Seeder
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
-                'group'        => 'front',
+                'group'        => 'Site',
             ])->save();
         }
 
@@ -74,8 +74,8 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Title',
-                'value'        => 'SM',
-                'details'      => 'Student Management',
+                'value'        => 'Voyager',
+                'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
                 'group'        => 'Admin',
@@ -86,7 +86,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Description',
-                'value'        => 'A studet management system',
+                'value'        => 'Welcome to Voyager. The Missing Admin for Laravel',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
