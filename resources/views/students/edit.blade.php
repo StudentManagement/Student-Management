@@ -7,7 +7,10 @@ if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->a
   $user_avatar = Auth::user()->avatar;
 }
 ?>
-<h3>User Details</h3>
+<div class="box box-solid box-profile" >
+  <div class="box-header with-border">
+    <h3 class="box-title">User Details</h3>
+  </div>
 <form class="form-horizontal" action="/home/profile/edit" method="POST" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="box-body box-profile">
@@ -60,5 +63,36 @@ if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->a
         <button type="submit" class="btn btn-success pull-right">Update</button>
     </div>
 </form>
+</div>
+
+            <div class="box box-solid box-profile" >
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change Password</h3>
+                </div>
+                <form action="/home/profile/UpdatePassword" id="changepassword" method="post">
+                    {{ csrf_field() }}
+                    <div class="box-body box-profile">
+                        <div class="form-group {{ $errors->has('current_password') ? 'has-error' :'' }}">
+                            <label for="exampleInputPassword1">Current Password</label>
+                            <input type="password" name="current_password" class="form-control" id="exampleInputPassword1" placeholder="Enter current password" required="true">
+                            @if($errors->has('current_password'))<span class="help-block">{{ $errors->first('current_password') }}</span>@endif
+                        </div>
+                        <div class="form-group {{ $errors->has('password') ? 'has-error' :'' }}">
+                            <label for="password">New Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter new password" required>
+                            @if($errors->has('password'))<span class="help-block">{{ $errors->first('password') }}</span>@endif
+                        </div>
+                        <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' :'' }}">
+                            <label for="password_confirmation">Retype Password</label>
+                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Retype new password" required>
+                            @if($errors->has('password_confirmation'))<span class="help-block">{{ $errors->first('password_confirmation') }}</span>@endif
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-danger pull-right" onClick="validatePassword();">Change My Password</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
 @endsection

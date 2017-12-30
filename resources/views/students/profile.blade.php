@@ -13,6 +13,20 @@ if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->a
 $user_avatar = Auth::user()->avatar;
 }
 ?>
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{{ $message }}</strong>
+</div>
+@endif
+
+
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{{ $message }}</strong>
+</div>
+@endif
 
 <div class="box box-primary">
 <div class="box-body box-profile">
@@ -44,7 +58,7 @@ $user_avatar = Auth::user()->avatar;
 
   </ul>
 
-  <a href="profile/edit" class="btn btn-primary btn-block"><b>Edit</b></a>
+  <a href="/home/profile/edit" class="btn btn-primary btn-block"><b>Edit</b></a>
 </div>
 <!-- /.box-body -->
 </div>
