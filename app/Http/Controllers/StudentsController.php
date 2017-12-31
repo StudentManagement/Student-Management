@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Result;
 use Khill\Lavacharts\Lavacharts;
 use \Lava as Lava;
 use Image;
@@ -30,21 +32,66 @@ class StudentsController extends Controller
         public function dashboard()
     {
 
-    $stocksTable = Lava::DataTable();  // Lava::DataTable() if using Laravel
+        $stocksTable = Lava::DataTable();  // Lava::DataTable() if using Laravel
+        $user = Auth::user();
+        $data = Result::where('reg_no',$user->reg_no)
+                ->orderBy('exam_id','desc')
+                ->take(20)
+                ->get()
+                ->reverse();
+        $stocksTable->addStringColumn('Exam ID')
+                    ->addNumberColumn('Marks');
 
-    $stocksTable->addDateColumn('Day of Month')
-                ->addNumberColumn('Projected')
-                ->addNumberColumn('Official');
+        foreach ($data as $datum) {
+            $stocksTable->addRow([
+                $datum->exam_id,$datum->marks
+            ]);
+        }
+    /*
+    Available options for laravel line charts
+    'axisTitlesPosition' => 'string',
+    'curveType'          => 'string',
+    'hAxis'              => [array],   //HorizontalAxis Options
+    'interpolateNulls'   => bool,
+    'lineWidth'          => int,
+    'pointSize'          => int,
+    'vAxis'              => [array],   //VerticalAxis Options
+    */
+    $chart = Lava::LineChart('MyStocks', $stocksTable)
+        ->setOptions([
+            'datatable' => $stocksTable,
+            'title' => 'Overall Performance of last 20 exams',
+            'pointSize' => 5,
+            'lineWidth' => 2,
+            'vAxis' => ['ticks' => [0,25,50,75,100],'title'=>'Marks'],
+            'hAxis' => ['title'=>'Exam id'],
+            'axisTitlesPosition' => 'out',
+            ]);
+        //Past history of Student
+        $studentMarks = Result::where('reg_no',$user->reg_no)->get();
+        $studentAvg = $studentMarks->avg('marks'); 
+        $studentMin = $studentMarks->min('marks');
+        $studentMax = $studentMarks->max('marks');
+        $studentData = [$studentAvg,$studentMin,$studentMax];
 
-    // Random Data For Example
-    for ($a = 1; $a < 10; $a++) {
-        $stocksTable->addRow([
-          '2015-10-' . $a, rand(8000,10), rand(8000,10)
-        ]);
-    }
-    $chart = Lava::LineChart('MyStocks', $stocksTable);
-    
-        return view('students.dashboard');
+        //Latest result of the student
+        $dataSend = $data->reverse();
+        $myMarks= $dataSend[0];        
+
+        //weekly breif of the whole class
+        $weekData = Result::where('exam_id',$myMarks->exam_id)->orderBy('exam_id','desc')->get();
+        $weekAvg = $weekData->avg('marks');
+        $weekMax = $weekData->max('marks');
+        $weekMin = $weekData->min('marks');
+        $week = [$weekAvg,$weekMax,$weekMin];
+        $rank=0;
+        while (($weekData[$rank]->reg_no) != Auth::user()->reg_no) {
+            $rank = $rank+1;
+            # code...
+        }
+        $myStat = [$myMarks,$rank];
+        // dd($count+1);
+        return view('students.dashboard',compact('myStat','studentData','week'));
     }
         public function profile()
     {
@@ -85,6 +132,19 @@ class StudentsController extends Controller
             $user->save();      
         }
         $user->save();        
-        return redirect('/home/profile');
+        return redirect('/home/profile')->with('success','Successfully updated');
+    }
+
+    public function UpdatePassword(Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        if (!Hash::check($request->current_password, auth()->user()->getAuthPassword())){
+            return redirect()->back()->withErrors(['current_password' => 'Password is not correct'])->withInput();
+        }
+        auth()->user()->password = bcrypt($request->get('password'));
+        auth()->user()->save();
+        return redirect('/home/profile')->with('success','Successfully updated');
     }
 }

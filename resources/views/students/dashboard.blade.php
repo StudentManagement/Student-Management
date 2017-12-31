@@ -4,47 +4,69 @@
 <h1>Dashboard</h1>
 
 <div class="row" >
-	<div class="col-md-3">
-		<div class="box-body">           
-            <div class="form-group">
-                <label>A/L-Year</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option selected="selected">2019</option>
-                  <option>2018</option>
-                  <option>2017</option>
-                </select>              
-            </div>
-        </div>
-        <div class="box-body">           
-            <div class="form-group">
-                <label>Paper-ID</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option selected="selected">Paper 07</option>
-                  <option>Paper 06</option>
-                  <option>Paper 05</option>
-                  <option>Paper 04</option>
-                  <option>Paper 03</option>
-                  <option>Paper 02</option>
-                  <option>Paper 01</option>
-                </select>              
-            </div>
-        </div>
-        <div class="box-body">           
-            <div class="form-group">
-                <label>Marker-ID</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option selected="selected">01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                </select>              
-            </div>
-        </div>
+	<div class="col-md-3" >
+      <div class="box box-solid box-profile" style="padding-top: 0px"> 
+        <center><h3><b>Marks for this week</b> </h3>
+        {{-- <h5>Exam No. {{ $dataSend[0]->exam_id }}</h5></center>
+        <b><p style="font-size: 15em;margin-top: -50px">{{ $dataSend[0]->marks }}</p></b> --}}
+        <h4>Exam No. {{ $myStat[0]->exam_id }}</h4></center>
+        <center><b><p style="font-size: 15em;margin-top: -50px ;">{{ $myStat[0]->marks }}</p></b></center>
+        <center><h4><b>Class rank {{ $myStat[1] }}</b></h4></center>
+      </div>
+
     </div>
 
-    <div class="col-md-8">
-         <div id="stocks-chart"></div>
+    <div class="col-md-9" style="margin-top:20px">
+         <div id="stocks-chart" style="height: 300px"></div>
+
+    </div>
+</div>
+<div class="row">
+      <div class="col-md-6">
+      <div class="box box-solid box-profile" style="padding-left: 20px;padding-right: 20px"> 
+        <center>
+          <h4><b>Weekly Breif</b> </h4>
+        </center>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Class Average</b> <a class="pull-right">
+            <?php 
+              echo round($week[0],2); 
+              
+            ?>%
+          </a>
+          </li>
+          <li class="list-group-item">
+            <b>Maximum marks taken</b> <a class="pull-right">{{ $week[1] }}</a>
+          </li>
+          <li class="list-group-item">
+            <b>Minimum marks taken</b> <a class="pull-right">{{ $week[2] }}</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="box box-solid box-profile" style="padding-left: 20px;padding-right: 20px"> 
+        <center>
+        <h4><b>My Progress</b> </h4></center>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Average</b> <a class="pull-right">
+            <?php 
+              echo round($studentData[0],2); 
+              
+            ?>%</a>
+          </li>
+          <li class="list-group-item">
+            <b>Maximum marks taken</b> <a class="pull-right">{{ $studentData[2] }}</a>
+          </li>
+          <li class="list-group-item">
+            <b>Minimum marks taken</b> <a class="pull-right">{{ $studentData[1] }}</a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 </div>
    
