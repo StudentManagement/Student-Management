@@ -8,7 +8,7 @@
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
         </h1>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3" >
                 @can('add',app($dataType->model_name))
                     <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
                         <i class="voyager-plus"></i> <span>{{ __('voyager.generic.add_new') }}</span>
@@ -20,17 +20,16 @@
                 @endcan
                 @include('voyager::multilingual.language-selector')
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 @can('add',app($dataType->model_name))
-                    <form action="/uploadUsers" method="post" enctype="multipart/form-data">
+                    <form action="/uploadResults" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input class="btn btn-success btn-add-new" type="submit" value="Bulk Upload" name="submit">
                                 </div>
-                                <div class="col-md-8">
-                                    {{-- <label for="upload-file"></label> --}}
+                                <div class="col-md-9">
                                     <input type="file" name="upload-file" class="form-control"  required ">
                                 </div>
                             </div>
