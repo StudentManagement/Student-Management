@@ -69,28 +69,47 @@ class StudentsController extends Controller
             ]);
         //Past history of Student
         $studentMarks = Result::where('reg_no',$user->reg_no)->get();
-        $studentAvg = $studentMarks->avg('marks'); 
-        $studentMin = $studentMarks->min('marks');
-        $studentMax = $studentMarks->max('marks');
+        if(!$studentMarks->isEmpty()){
+            $studentAvg = $studentMarks->avg('marks'); 
+            $studentMin = $studentMarks->min('marks');
+            $studentMax = $studentMarks->max('marks');
+        }else{
+            $studentAvg = 0;
+            $studentMin = 0;
+            $studentMax = 0;
+        }
         $studentData = [$studentAvg,$studentMin,$studentMax];
 
         //Latest result of the student
         $dataSend = $data->reverse();
-        $myMarks= $dataSend[0];        
+        if(!$dataSend->isEmpty()){
+            $myMarks= $dataSend[0];
+        } else{
+            $myMarks = new Result;
+            $myMarks->exam_id = 1;
+            $myMarks->marks = 0;
+        }      
 
         //weekly breif of the whole class
-        $weekData = Result::where('exam_id',$myMarks->exam_id)->orderBy('exam_id','desc')->get();
-        $weekAvg = $weekData->avg('marks');
-        $weekMax = $weekData->max('marks');
-        $weekMin = $weekData->min('marks');
-        $week = [$weekAvg,$weekMax,$weekMin];
-        $rank=0;
-        while (($weekData[$rank]->reg_no) != Auth::user()->reg_no) {
+        $weekData = Result::where('exam_id',$myMarks->exam_id)->orderBy('marks','desc')->get();
+        // dd($weekData);
+            $rank=0;
+        if($weekData->isEmpty()){
+            $weekAvg = $weekData->avg('marks');
+            $weekMax = $weekData->max('marks');
+            $weekMin = $weekData->min('marks');
+            while (($weekData[$rank]->reg_no) != Auth::user()->reg_no) {
+                $rank = $rank+1;
+            }
             $rank = $rank+1;
-            # code...
+            
+        }else{
+            $weekAvg = 0;
+            $weekMax = 0;
+            $weekMin = 0;
         }
+            $week = [$weekAvg,$weekMax,$weekMin];
         $myStat = [$myMarks,$rank];
-        // dd($count+1);
         return view('students.dashboard',compact('myStat','studentData','week'));
     }
         public function profile()

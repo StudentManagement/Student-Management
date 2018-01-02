@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Dashboard</h1>
-
+  
 <div class="row" >
 	<div class="col-md-3" >
       <div class="box box-solid box-profile" style="padding-top: 0px"> 
