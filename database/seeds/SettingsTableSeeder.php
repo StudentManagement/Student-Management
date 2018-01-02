@@ -10,43 +10,43 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        $setting = $this->findSetting('site.title');
+        $setting = $this->findSetting('front.title');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => 'Site Title',
-                'value'        => 'Site Title',
+                'display_name' => 'Front Title',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
-                'group'        => 'Site',
+                'group'        => 'Front',
             ])->save();
         }
 
-        $setting = $this->findSetting('site.description');
+        $setting = $this->findSetting('front.description');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => 'Site Description',
-                'value'        => 'Site Description',
+                'display_name' => 'Front Description',
+                'value'        => 'Student Management',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
-                'group'        => 'Site',
+                'group'        => 'Front',
             ])->save();
         }
 
-        $setting = $this->findSetting('site.logo');
+        $setting = $this->findSetting('front.logo');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => 'Site Logo',
+                'display_name' => 'Front Logo',
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
-                'group'        => 'Site',
+                'group'        => 'Front',
             ])->save();
         }
 
-        $setting = $this->findSetting('site.google_analytics_tracking_id');
+        $setting = $this->findSetting('front.google_analytics_tracking_id');
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Google Analytics Tracking ID',
@@ -54,7 +54,7 @@ class SettingsTableSeeder extends Seeder
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
-                'group'        => 'Site',
+                'group'        => 'Front',
             ])->save();
         }
 

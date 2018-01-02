@@ -158,7 +158,7 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 0,
-                'details'      => '{"model":"App\\Exam","table":"exams","type":"belongsTo","column":"exam_id","key":"id","label":"name","pivot_table":"al_batches","pivot":"0"}',
+                'details'      => '{"model":"App\\\Exam","table":"exams","type":"belongsTo","column":"exam_id","key":"id","label":"name","pivot_table":"al_batches","pivot":"0"}',
                 'order'        => 9,
             ])->save();
         }
@@ -477,7 +477,7 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 0,
-                'details'      => '{"model":"App\\Exam","table":"exams","type":"belongsTo","column":"exam_id","key":"id","label":"name","pivot_table":"al_batches","pivot":"0"}',
+                'details'      => '{"model":"App\\\AlBatch","table":"al_batches","type":"belongsTo","column":"al_batch","key":"id","label":"year","pivot_table":"al_batches","pivot":"0"}',
                 'order'        => 15,
             ])->save();
         }
@@ -493,7 +493,7 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 0,
-                'details'      => '{"model":"App\\Institute","table":"institutes","type":"belongsTo","column":"institute_id","key":"id","label":"name","pivot_table":"al_batches","pivot":"0"}',
+                'details'      => '{"model":"App\\\Institute","table":"institutes","type":"belongsTo","column":"institute_id","key":"id","label":"name","pivot_table":"al_batches","pivot":"0"}',
                 'order'        => 16,
             ])->save();
         }
