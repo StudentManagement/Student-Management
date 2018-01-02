@@ -16,8 +16,8 @@ class CreateResultsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('exam_id');
-			$table->integer('reg_no');
-			$table->integer('marker_id');
+			$table->string('reg_no');
+			$table->string('marker_id');
 			$table->integer('marks');
 			$table->timestamps();
 			$table->softDeletes();

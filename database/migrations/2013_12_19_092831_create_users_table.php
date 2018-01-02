@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 191);
 			$table->string('remember_token', 100)->nullable();
 			$table->timestamps();
-			$table->integer('reg_no')->nullable();
+			$table->string('reg_no')->nullable();
 			$table->text('address', 65535)->nullable();
 			$table->integer('contact_no')->nullable();
 			$table->string('nic')->nullable();
