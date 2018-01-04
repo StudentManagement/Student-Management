@@ -158,7 +158,9 @@ class StudentsController extends Controller
         }
         $myStat = [$myMarks,$rankProvince,$examinerName,$examName,$rankInst];
             // dd($myStat);
+
         return view('students.dashboard',compact('myStat','studentData','weekProvince','weekInst'));
+
     }
         public function profile()
     {

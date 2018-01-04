@@ -6,7 +6,7 @@ use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
 
-class Institutes extends AbstractWidget
+class Examiners extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -21,18 +21,18 @@ class Institutes extends AbstractWidget
      */
     public function run()
     {
-        $count = \App\Institute::count();
-        $string = 'Institutes';
+        $count = Voyager::model('User')->where('role_id',4)->count();
+        $string = 'Examiners';
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
             'title'  => "{$count} {$string}",
-            'text'   => __('Click on buttton to view all institutes', ['count' => $count, 'string' => Str::lower($string)]),
+            'text'   => __('Click on button below to view all examiners.', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => __('View All Institutes'),
+                'text' => __('View All Examiners'),
                 'link' => route('voyager.users.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
         ]));
     }
 }
