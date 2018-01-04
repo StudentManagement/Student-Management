@@ -1,6 +1,6 @@
 @extends('layouts.student_layout')
 
-@section('content')
+@section('content') 
 <h1>Dashboard</h1>
   
 <div class="row" >
@@ -9,8 +9,9 @@
         <center><h3><b>Marks for this week</b> </h3>
         {{-- <h5>Exam No. {{ $dataSend[0]->exam_id }}</h5></center>
         <b><p style="font-size: 15em;margin-top: -50px">{{ $dataSend[0]->marks }}</p></b> --}}
-        <h4>Exam No. {{ $myStat[0]->exam_id }}</h4></center>
-        <center><b><p style="font-size: 15em;margin-top: -50px ;">{{ $myStat[0]->marks }}</p></b></center>
+        <h4>Exam - {{ $myStat[3]}} ({{  $myStat[0]->exam_id}})</h4></center>
+        <center><h4>Marked by: {{ $myStat[2] }}</h4></center>
+        <center><b><p style="font-size: 15em;margin-top: -50px;margin-bottom:-45px  ;">{{ $myStat[0]->marks }}</p></b></center>
         <center><h4><b>Class rank {{ $myStat[1] }}</b></h4></center>
       </div>
 

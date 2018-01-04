@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\Result;
+use App\Exam;
 use Khill\Lavacharts\Lavacharts;
 use \Lava as Lava;
 use Image;
@@ -67,6 +68,7 @@ class StudentsController extends Controller
             'hAxis' => ['title'=>'Exam id'],
             'axisTitlesPosition' => 'out',
             ]);
+
         //Past history of Student
         $studentMarks = Result::where('reg_no',$user->reg_no)->get();
         if(!$studentMarks->isEmpty()){
@@ -79,6 +81,7 @@ class StudentsController extends Controller
             $studentMax = 0;
         }
         $studentData = [$studentAvg,$studentMin,$studentMax];
+        // dd($studentData);
 
         //Latest result of the student
         $dataSend = $data->reverse();
@@ -86,30 +89,46 @@ class StudentsController extends Controller
             $myMarks= $dataSend[0];
         } else{
             $myMarks = new Result;
-            $myMarks->exam_id = 1;
+            $myMarks->exam_id = 0;
+            $myMarks->marker_id = 0;
             $myMarks->marks = 0;
         }      
 
         //weekly breif of the whole class
         $weekData = Result::where('exam_id',$myMarks->exam_id)->orderBy('marks','desc')->get();
+
         // dd($weekData);
             $rank=0;
-        if($weekData->isEmpty()){
+        if(!$weekData->isEmpty()){
             $weekAvg = $weekData->avg('marks');
             $weekMax = $weekData->max('marks');
             $weekMin = $weekData->min('marks');
-            while (($weekData[$rank]->reg_no) != Auth::user()->reg_no) {
+            while (($weekData[$rank]->reg_no) != $user->reg_no) {
                 $rank = $rank+1;
             }
-            $rank = $rank+1;
-            
+            // dd($weekData);
+            $rank = $rank+1;            
         }else{
             $weekAvg = 0;
             $weekMax = 0;
             $weekMin = 0;
         }
             $week = [$weekAvg,$weekMax,$weekMin];
-        $myStat = [$myMarks,$rank];
+        if($myMarks->marker_id ==0){
+            $examinerName = 'Absent for the exam';
+            $examName = 'Absent for the exam';
+        }else{
+            $examiner = User::where('id',$myMarks->marker_id)->get();
+            $examinerName = $examiner[0]->name;
+            $exam = Exam::where('id',$myMarks->exam_id)->get();
+            if(!$exam->isEmpty()){
+                $examName = $exam[0]->name;                
+            }else{
+                $examName = 'Not Given'; 
+            }
+        }
+        $myStat = [$myMarks,$rank,$examinerName,$examName];
+            // dd($myStat);
         return view('students.dashboard',compact('myStat','studentData','week'));
 
     }
