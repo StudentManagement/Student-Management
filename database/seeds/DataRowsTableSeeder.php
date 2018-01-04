@@ -18,6 +18,8 @@ class DataRowsTableSeeder extends Seeder
         $menuDataType = DataType::where('slug', 'menus')->firstOrFail();
         $roleDataType = DataType::where('slug', 'roles')->firstOrFail();
         $instituteDataType = DataType::where('slug', 'institutes')->firstOrFail();
+        $summaryDataType = DataType::where('slug', 'summaries')->firstOrFail();
+
 // Results BREAD start
         $dataRow = $this->dataRow($resultDataType, 'id');
         if (!$dataRow->exists) {
@@ -901,6 +903,69 @@ class DataRowsTableSeeder extends Seeder
             ])->save();
         }
 //Institute Bread ends
+//Summary Bread Starts
+        $dataRow = $this->dataRow($summaryDataType, 'exam_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Exam Id',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 1,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($summaryDataType, 'average');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Average',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 2,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($summaryDataType, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'created_at',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 3,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($summaryDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'updated_at',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 4,
+            ])->save();
+        }
+//Summary bread ends
 
 
 

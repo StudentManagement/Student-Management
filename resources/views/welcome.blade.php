@@ -48,7 +48,7 @@
               @if (Route::has('login'))
                   <div class="top-right links">
                       @auth
-                          <a class="nav-link js-scroll-trigger" href="{{ url('/home/dashboard') }}">Home Dashboard</a>
+                          <a class="nav-link js-scroll-trigger" href="{{ url('/home/dashboard') }}">Dashboard</a>
                       @else
                           <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a>
                       @endauth

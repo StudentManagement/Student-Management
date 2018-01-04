@@ -33,7 +33,6 @@ Route::get('/home/profile/edit','StudentsController@edit');
 Route::post('/home/profile/edit','StudentsController@update');
 Route::post('/home/profile/UpdatePassword','StudentsController@UpdatePassword' );
 
-
 Route::post('/uploadResults', 'BulkUploadController@uploadResults');
 Route::post('/uploadUsers', 'BulkUploadController@uploadUsers');
 

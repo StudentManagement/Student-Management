@@ -23,7 +23,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/home/dashboard"><i class="fa fa-line-chart"></i> <span>Dashboard</span></a></li>
         <li><a href="/home/profile"><i class="fa fa-user-md"></i> <span>Profile</span></a></li>
-        <li><a href="/home/media"><i class="fa fa-file-image-o"></i> <span>Media Manager</span></a></li>
+        {{-- <li><a href="/home/media"><i class="fa fa-file-image-o"></i> <span>Media Manager</span></a></li> --}}
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -33,6 +33,23 @@ class MenuItemsTableSeeder extends Seeder
                     'order'      => 1,
                 ])->save();
             }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id' => $menu->id,
+                'title'   => 'Summaries',
+                'url'     => '/admin/summary',
+                'route'   => '',
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-bar-chart',
+                    'color'      => null,
+                    'parent_id'  => null,
+                    'order'      => 2,
+                ])->save();
+            }
+
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
                 'title'   => 'Roles',
@@ -45,7 +62,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-lock',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 2,
+                    'order'      => 3,
                 ])->save();
             }
 
@@ -61,7 +78,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-person',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 3,
+                    'order'      => 4,
                 ])->save();
             }
 
@@ -77,7 +94,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-images',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 4,
+                    'order'      => 5,
                 ])->save();
             }
 
@@ -93,7 +110,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-lighthouse',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 5,
+                    'order'      => 6,
                 ])->save();
             }
 
@@ -109,7 +126,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-documentation',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 6,
+                    'order'      => 7,
                 ])->save();
             }
 
@@ -125,7 +142,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-pie-chart',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 7,
+                    'order'      => 8,
                 ])->save();
             }
 
@@ -141,7 +158,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-study',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 8,
+                    'order'      => 9,
                 ])->save();
             }
             
@@ -156,7 +173,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-tools',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 9,
+                    'order'      => 10,
                 ])->save();
             }
 
@@ -172,7 +189,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-list',
                     'color'      => null,
                     'parent_id'  => $toolsMenuItem->id,
-                    'order'      => 10,
+                    'order'      => 11,
                 ])->save();
             }
 
@@ -188,7 +205,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-data',
                     'color'      => null,
                     'parent_id'  => $toolsMenuItem->id,
-                    'order'      => 11,
+                    'order'      => 12,
                 ])->save();
             }
 
@@ -204,7 +221,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-compass',
                     'color'      => null,
                     'parent_id'  => $toolsMenuItem->id,
-                    'order'      => 12,
+                    'order'      => 13,
                 ])->save();
             }
 
@@ -220,7 +237,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-hook',
                     'color'      => null,
                     'parent_id'  => $toolsMenuItem->id,
-                    'order'      => 13,
+                    'order'      => 14,
                 ])->save();
             }
 
@@ -236,7 +253,7 @@ class MenuItemsTableSeeder extends Seeder
                     'icon_class' => 'voyager-settings',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 14,
+                    'order'      => 15,
                 ])->save();
             }
         }
