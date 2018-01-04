@@ -111,6 +111,7 @@ class StudentsController extends Controller
             $week = [$weekAvg,$weekMax,$weekMin];
         $myStat = [$myMarks,$rank];
         return view('students.dashboard',compact('myStat','studentData','week'));
+
     }
         public function profile()
     {
