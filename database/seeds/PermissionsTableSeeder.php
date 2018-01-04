@@ -39,6 +39,6 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('al_batches');
 
         Permission::generateFor('settings');
-        Permission::generateFor('summaries');
+        Permission::generateFor('summary');
     }
 }
