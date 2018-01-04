@@ -21,18 +21,18 @@ class Institutes extends AbstractWidget
      */
     public function run()
     {
-        $count = Voyager::model('User')->where('role_id',2)->count();
-        $string = trans_choice('voyager.dimmer.user', $count);
+        $count = \App\Institute::count();
+        $string = 'Institutes';
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
             'title'  => "{$count} {$string}",
-            'text'   => __('voyager.dimmer.user_text', ['count' => $count, 'string' => Str::lower($string)]),
+            'text'   => __('Click on buttton to view all institutes', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => __('voyager.dimmer.user_link_text'),
-                'link' => route('voyager.users.index'),
+                'text' => __('View All Institutes'),
+                'link' => route('voyager.institutes.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
         ]));
     }
 }

@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin/summary','AdminController@browse');
 
 Route::get('/home/dashboard','StudentsController@dashboard');
 Route::get('/home/profile','StudentsController@profile');
@@ -34,3 +35,7 @@ Route::post('/home/profile/UpdatePassword','StudentsController@UpdatePassword' )
 
 Route::post('/uploadResults', 'BulkUploadController@uploadResults');
 Route::post('/uploadUsers', 'BulkUploadController@uploadUsers');
+
+Route::get('/admin/summary123/test','AdminController@inst1');
+Route::get('/admin/summary/2','AdminController@inst2');
+Route::get('/admin/summary/3','AdminController@inst3');
