@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Result;
@@ -81,6 +81,7 @@ class StudentsController extends Controller
             $studentMax = 0;
         }
         $studentData = [$studentAvg,$studentMin,$studentMax];
+
         // dd($studentData);
 
         //Latest result of the student
@@ -94,26 +95,54 @@ class StudentsController extends Controller
             $myMarks->marks = 0;
         }      
 
-        //weekly breif of the whole class
-        $weekData = Result::where('exam_id',$myMarks->exam_id)->orderBy('marks','desc')->get();
+        //weekly breif of the whole class (Province)
+        $weekDataProvince = Result::where('exam_id',$myMarks->exam_id)->orderBy('marks','desc')->get();
 
         // dd($weekData);
-            $rank=0;
-        if(!$weekData->isEmpty()){
-            $weekAvg = $weekData->avg('marks');
-            $weekMax = $weekData->max('marks');
-            $weekMin = $weekData->min('marks');
-            while (($weekData[$rank]->reg_no) != $user->reg_no) {
-                $rank = $rank+1;
+            $rankProvince=0;
+        if(!$weekDataProvince->isEmpty()){
+            $weekAvgProvince = $weekDataProvince->avg('marks');
+            $weekMaxProvince = $weekDataProvince->max('marks');
+            $weekMinProvince = $weekDataProvince->min('marks');
+            while (($weekDataProvince[$rankProvince]->reg_no) != $user->reg_no) {
+                $rankProvince = $rankProvince+1;
             }
             // dd($weekData);
-            $rank = $rank+1;            
+            $rankProvince = $rankProvince+1;            
         }else{
-            $weekAvg = 0;
-            $weekMax = 0;
-            $weekMin = 0;
+            $weekAvgProvince = 0;
+            $weekMaxProvince = 0;
+            $weekMinProvince = 0;
         }
-            $week = [$weekAvg,$weekMax,$weekMin];
+            $weekProvince = [$weekAvgProvince,$weekMaxProvince,$weekMinProvince];
+
+        //week data for the institute
+        // $weekDataInst = Result::where('exam_id',$myMarks->exam_id)->orderBy('marks','desc')->get();
+        $weekDataInst = DB::table('results')
+            ->join('users', 'users.reg_no', '=', 'results.reg_no')
+            ->select('users.institute_id', 'results.*')
+            ->where(['institute_id'=>$user->institute_id,'exam_id'=>$myMarks->exam_id])
+            ->get();
+        // dd($weekDataInst);
+            $rankInst=0;
+
+        if(!$weekDataInst->isEmpty()){
+            $weekAvgInst = $weekDataInst->avg('marks');
+            $weekMaxInst = $weekDataInst->max('marks');
+            $weekMinInst = $weekDataInst->min('marks');
+            while (($weekDataInst[$rankInst]->reg_no) != $user->reg_no) {
+                $rankInst = $rankInst+1;
+            }
+            $rankInst = $rankInst+1;            
+        }else{
+            $weekAvgInst = 0;
+            $weekMaxInst = 0;
+            $weekMinInst = 0;
+        }
+            $weekInst = [$weekAvgInst,$weekMaxInst,$weekMinInst];
+            // dd($weekInst,$weekProvince);
+
+
         if($myMarks->marker_id ==0){
             $examinerName = 'Absent for the exam';
             $examName = 'Absent for the exam';
@@ -127,9 +156,9 @@ class StudentsController extends Controller
                 $examName = 'Not Given'; 
             }
         }
-        $myStat = [$myMarks,$rank,$examinerName,$examName];
+        $myStat = [$myMarks,$rankProvince,$examinerName,$examName,$rankInst];
             // dd($myStat);
-        return view('students.dashboard',compact('myStat','studentData','week'));
+        return view('students.dashboard',compact('myStat','studentData','weekProvince','weekInst'));
     }
         public function profile()
     {
@@ -182,6 +211,11 @@ class StudentsController extends Controller
             return redirect()->back()->withErrors(['current_password' => 'Password is not correct'])->withInput();
         }
         auth()->user()->password = bcrypt($request->get('password'));
+        if(auth()->user()->password_change_at == null){
+            auth()->user()->password_change_at = 'changed';
+            auth()->user()->save(); 
+            return redirect('/home/dashboard')->with('success','Successfully updated');
+        }
         auth()->user()->save();
         return redirect('/home/profile')->with('success','Successfully updated');
     }

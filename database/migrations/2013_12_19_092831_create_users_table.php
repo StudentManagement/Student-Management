@@ -22,12 +22,13 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 			$table->string('reg_no')->nullable();
 			$table->text('address', 65535)->nullable();
-			$table->integer('contact_no')->nullable();
+			$table->string('contact_no')->nullable();
 			$table->string('nic')->nullable();
 			$table->integer('institute_id')->nullable();
 			$table->softDeletes();
 			$table->integer('al_batch')->nullable();
 			$table->string('gender')->nullable();
+			$table->string('password_change_at')->nullable();
 		});
 	}
 

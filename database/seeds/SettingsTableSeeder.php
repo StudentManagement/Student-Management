@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Front Title',
-                'value'        => '',
+                'value'        => 'Student Management',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -26,7 +26,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Front Description',
-                'value'        => 'Student Management',
+                'value'        => 'Next step in A/L education',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
@@ -62,7 +62,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Background Image',
-                'value'        => '',
+                'value'        => 'settings/January2018/tZtn37mEtZCkviSlUSpV.JPG',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 5,
@@ -98,7 +98,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Loader',
-                'value'        => '',
+                'value'        => 'settings/January2018/3wQMR5kYBgA4GNN4Tb0g.jpg',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
@@ -110,7 +110,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Icon Image',
-                'value'        => '',
+                'value'        => 'settings/January2018/L5UdD1ukJRzYISOvVt2u.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 4,

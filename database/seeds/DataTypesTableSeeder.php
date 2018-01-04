@@ -108,6 +108,21 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+
+        $dataType = $this->dataType('slug', 'summaries');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'summaries',
+                'display_name_singular' => 'Summary',
+                'display_name_plural'   => 'Summaries',
+                'icon'                  => 'voyager-bar-chart',
+                'model_name'            => 'App\\Summary',
+                'policy_name'           => '',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
     }
 
     /**
