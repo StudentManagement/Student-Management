@@ -10,6 +10,8 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "intervention/image": "^2.4",
+        "khill/lavacharts": "3.0.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "tcg/voyager": "^1.0"
@@ -18,7 +20,8 @@
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0",
+        "xethron/migrations-generator": "^2.0"
     },
     "autoload": {
         "classmap": [

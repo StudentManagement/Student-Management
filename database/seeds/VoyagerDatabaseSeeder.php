@@ -14,6 +14,7 @@ class VoyagerDatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         $this->seed('DataTypesTableSeeder');
@@ -23,5 +24,7 @@ class VoyagerDatabaseSeeder extends Seeder
         $this->seed('RolesTableSeeder');
         $this->seed('PermissionsTableSeeder');
         $this->seed('PermissionRoleTableSeeder');
+        $this->seed('UsersTableSeeder');
+        $this->seed('SettingsTableSeeder');
     }
 }

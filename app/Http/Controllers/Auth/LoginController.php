@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\Closure;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/home/dashboard';
 
     /**
      * Create a new controller instance.
@@ -36,4 +37,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+       
+       public function username()
+    {
+        return 'reg_no';
+    }
+        public function authenticated(Request $request, $user)
+    {
+         if ($user->password_change_at != null){
+            return redirect('/home/dashboard');
+        }else{
+            return view('students.changePassword');
+        }
+    }
+    
 }

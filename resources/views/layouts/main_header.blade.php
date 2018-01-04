@@ -1,7 +1,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/home" class="logo">
+    <a href="/home/dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>M</span>
       <!-- logo for regular state and mobile devices -->
@@ -41,8 +41,12 @@
                 <div class="pull-left">
                   <a href="/home/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
+                @if(Voyager::can('browse_admin'))
+                <div class="pull-left" style="padding-left: 10px">
+                  <a href="/admin" class="btn btn-default btn-flat">Admin Panel</a>
+                </div>
+                @endcan
                 <div class="pull-right">
-                  {{-- <a href="#" class="btn btn-default btn-flat">Logout</a> --}}
                   <a href="{{ url('/logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();" class="btn btn-default btn-flat" >

@@ -14,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/css/ionicons.min.css">
   <!-- Theme style -->
@@ -59,7 +59,7 @@ desired effect
 <?php
 $user_avatar = Voyager::image(Auth::user()->avatar);
 if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->avatar, 0, 8) == 'https://')) {
-$user_avatar = Auth::user()->avatar;
+	$user_avatar = Auth::user()->avatar;
 }
 ?>
 <div class="wrapper">
@@ -68,7 +68,7 @@ $user_avatar = Auth::user()->avatar;
     @include('layouts.main_header')
   <!-- Left side column. contains the logo and sidebar -->
     @include('layouts.sidebar')
-  
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -103,7 +103,7 @@ $user_avatar = Auth::user()->avatar;
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="/js/jquery.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
