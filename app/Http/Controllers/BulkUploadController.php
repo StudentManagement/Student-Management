@@ -10,6 +10,7 @@ use Auth;
 class BulkUploadController extends Controller {
 	public function __construct() {
 		$this->middleware('auth');
+        $this->middleware('preventBackHistory');
 	}
 
 	public function uploadResults(Request $request) {
