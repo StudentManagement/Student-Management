@@ -21,7 +21,8 @@ Route::group(['prefix' => 'admin','middleware' => 'preventBackHistory'], functio
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'StudentsController@dashboard');
 
 Route::get('/admin/summary','AdminController@browse');
 
