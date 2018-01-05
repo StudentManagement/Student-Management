@@ -1,3 +1,4 @@
+
 # Maths4U - Student Management System
 
 ## Used technologies
@@ -51,9 +52,11 @@ The dummy data will include 4 accounts (if no users already exists) and 7 settin
 
 To install **Maths4U**
 
+
 ```bash
 php artisan voyager:install
 ```
+
 
 > Troubleshooting: **Specified key was too long error**. If you see this error message you have an outdated version of MySQL, use the following solution: https://laravel-news.com/laravel-5-4-key-too-long-error
 
@@ -81,6 +84,7 @@ Four type of users should have been created for you with the following login cre
 >**email:** `admin@admin.com`   
 >**password:** `password`
 
+
 >**email:** `student@student.com`   
 >**reg no:** `student`   
 >**password:** `password`
@@ -95,13 +99,16 @@ Four type of users should have been created for you with the following login cre
 NOTE: Please note that dummy users are **only** created if there are no current users in your database.
 
 If you may wish to assign admin privileges to an existing user.
+
 This can easily be done by running this command:
 
 ```bash
 php artisan voyager:admin your@email.com
 ```
 
+
 If You wish to create a new admin user you can pass the `--create` flag, like so:
+
 
 ```bash
 php artisan voyager:admin your@email.com --create
