@@ -62,7 +62,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Background Image',
-                'value'        => 'settings/January2018/tZtn37mEtZCkviSlUSpV.JPG',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 5,
@@ -98,7 +98,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Loader',
-                'value'        => 'settings/January2018/3wQMR5kYBgA4GNN4Tb0g.jpg',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
@@ -110,7 +110,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Icon Image',
-                'value'        => 'settings/January2018/L5UdD1ukJRzYISOvVt2u.png',
+                'value'        => '',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 4,

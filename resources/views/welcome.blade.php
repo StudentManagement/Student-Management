@@ -4,7 +4,9 @@
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">    
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <link rel="shortcut icon" href="{{ voyager_asset('images/logo-icon.png') }}" type="image/x-icon">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -88,7 +90,7 @@
           <div class="col-lg-6 col-xs-6 mx-auto">
             <h1 class="brand-heading">Chandana Dahanayaka</h1>
             <p class="intro-text">
-            <p>Start our A/L classes in 2008 with 6 students. And today we had widen our strength to all over southern province</p>
+            <p>Started our A/L classes in 2008 with 6 students. And today we have widen our strength to all over Southern Province</p>
           </div>
         </div>
       </div>
