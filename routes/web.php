@@ -15,13 +15,14 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => 'preventBackHistory'], function () {
 	Voyager::routes();
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'StudentsController@dashboard');
 
 Route::get('/admin/summary','AdminController@browse');
 
