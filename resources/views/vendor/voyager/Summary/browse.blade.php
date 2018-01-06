@@ -106,14 +106,23 @@
             <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
                     <table class="table table-hover">
-                    @foreach($data as $datum)
-                        <tr>
-                        <td>{{$datum->reg_no}}</td>
-                        <td>{{$datum->name}}</td>
-                        <td>{{$datum->marks}}</td>
-                        </tr>
+                         <thead>
+                           <tr>
+                             <th scope="col">Register Number</th>
+                             <th scope="col">Name</th>
+                             <th scope="col">Marks</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($data as $datum)
+                            <tr>
+                            <td>{{$datum->reg_no}}</td>
+                            <td>{{$datum->name}}</td>
+                            <td>{{$datum->marks}}</td>
+                            </tr>
 
-                    @endforeach
+                        @endforeach
+                        </tbody>
                     </table>
                 </li>
             </ul>
