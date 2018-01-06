@@ -45,7 +45,15 @@ APP_URL=http://localhost:8000
 
 > Only if you are on Laravel 5.4 will you need to [Add the Service Provider.](https://voyager.readme.io/docs/adding-the-service-provider)
 
-### 2. Run The Installer
+### 2. Install dependencies using composer
+
+This can easily be done by running this command:
+
+```bash
+composer install
+```
+
+### 3. Run The Installer
 
 Lastly, we can install Maths4U. 
 The dummy data will include 4 accounts (if no users already exists) and 7 settings.
@@ -60,15 +68,6 @@ php artisan voyager:install
 
 > Troubleshooting: **Specified key was too long error**. If you see this error message you have an outdated version of MySQL, use the following solution: https://laravel-news.com/laravel-5-4-key-too-long-error
 
-### 3. Update dependencies using composer
-
-This can easily be done by running this command:
-
-```bash
-composer update
-```
-
-
 And we're all good to go!
 
 Start up a local development server with `php artisan serve` 
@@ -82,18 +81,18 @@ Start up a local development server with `php artisan serve`
 Four type of users should have been created for you with the following login credentials:
 
 >**email:** `admin@admin.com`   
->**password:** `password`
+>**password:** `######`
 
 
 >**email:** `student@student.com`   
 >**reg no:** `student`   
->**password:** `password`
+>**password:** `#####`
 
 >**email:** `teacher@teacher.com`   
->**password:** `password`
+>**password:** `#####`
 
 >**email:** `marker@marker.com`   
->**password:** `password`
+>**password:** `######`
 
 
 NOTE: Please note that dummy users are **only** created if there are no current users in your database.
