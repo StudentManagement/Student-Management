@@ -22,6 +22,35 @@
 
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
+    {{-- Loading images from the databases to variables --}}
+    <style >
+        #about_picture{
+          display:table;
+          width:100%;
+          height:650px;
+          text-align:center;
+          background:url(storage/{{ setting('about.teachers_image','') }}) no-repeat bottom center scroll;
+          background-color:#000;
+          -webkit-background-size:cover;
+          -moz-background-size:cover;
+          -o-background-size:cover;
+          background-size:cover
+        }  
+        .masthead{
+          display:table;
+          width:100%;
+          height:auto;
+          padding:200px 0;
+          text-align:center;
+          color:#fff;
+          background:url(storage/{{ setting('front.background','') }}) no-repeat bottom center scroll;
+          background-color:#000;
+          -webkit-background-size:cover;
+          -moz-background-size:cover;
+          -o-background-size:cover;
+          background-size:cover
+        } 
+    </style>
 
   </head>
 
@@ -68,10 +97,21 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="brand-heading">MATHS4U</h2>
-              <h3 class="intro-text">The only way to learn mathematics is to do mathmatics</br>
-                -Paul Halmos-
-                <!--<br>Created by Start Bootstrap.--></h3>
+              {{-- <h2 class="brand-heading">MATHS4U</h2> --}}
+              <h2 class="brand-heading"><?php
+                $temp = Voyager::setting('front.title','');
+                echo $temp;
+              ?></h2>
+
+              <h3 class="intro-text"><?php
+                $temp = Voyager::setting('front.intro_text','');
+                echo $temp;
+              ?></br>
+                -<?php
+                $temp = Voyager::setting('front.intro_author','');
+                echo $temp;
+              ?>-
+                </h3>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
@@ -85,12 +125,19 @@
     <section id="about" class="content-section text-center">
       <div class="container">
         <div class="row">
+
           <div class="col-lg-6 col-xs-6 mx-auto" id="about_picture">
           </div>
           <div class="col-lg-6 col-xs-6 mx-auto">
-            <h1 class="brand-heading">Chandana Dahanayaka</h1>
+            <h1 class="brand-heading"><?php
+                $temp = Voyager::setting('about.teachers_name','');
+                echo $temp;
+              ?></h1>
             <p class="intro-text">
-            <p>Started our A/L classes in 2008 with 6 students. And today we have widen our strength to all over Southern Province</p>
+            <p><?php
+                $temp = Voyager::setting('about.teachers_description','');
+                echo $temp;
+              ?></p>
           </div>
         </div>
       </div>
@@ -106,25 +153,144 @@
         </div>
         <div class="row">
           <div class="col-lg-4">
-            <font size="5" color="#58FA58">Galle</font> | <font size="5" color="#AC58FA">Thigma</font>
+            <font size="5" color="#58FA58"><?php
+                $temp = Voyager::setting('class-1.location','');
+                echo $temp;
+              ?></font> | <font size="5" color="#AC58FA"><?php
+                $temp = Voyager::setting('class-1.name','');
+                echo $temp;
+              ?></font>
             <p>
-             <strong>2018 Revision</strong> <code>13th September</code><br> 08.00 a.m.<br>
-             <strong>2018 Theory</strong> <code>Saturday</code><br> 1 p.m. - 5 p.m.<br>
-             <strong>2019 Theory</strong> <code>Saturday</code><br> 08.00 a.m. - 12.00 p.m.<br>
+              @if(!empty(Voyager::setting('class-1.b1_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-1.b1_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-1.b1_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-1.b1_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-1.b2_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-1.b2_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-1.b2_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-1.b2_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-1.b3_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-1.b3_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-1.b3_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-1.b3_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
             </p>
           </div>
           <div class="col-lg-4">
-            <font size="5" color="#58FA58">Matara</font> | <font size="5" color="#AC58FA">Gurukula</font>
+            <font size="5" color="#58FA58"><?php
+                $temp = Voyager::setting('class-2.location','');
+                echo $temp;
+              ?></font> | <font size="5" color="#AC58FA"><?php
+                $temp = Voyager::setting('class-2.name','');
+                echo $temp;
+              ?></font>
             <p>
-              <strong>2018 Revision</strong> <code>11th September</code><br> 08.00 a.m.<br>
-              <strong>2018 Theory</strong> <code>Sunday</code><br> 1 p.m. - 5 p.m.<br>
-              <strong>2019 Theory</strong> <code>Sunday</code><br> 08.00 a.m. - 12.00 p.m.<br>
+              @if(!empty(Voyager::setting('class-2.b1_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-2.b1_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-2.b1_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-2.b1_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-2.b2_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-2.b2_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-2.b2_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-2.b2_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-2.b3_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-2.b3_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-2.b3_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-2.b3_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
             </p>
           </div>
           <div class="col-lg-4">
-            <font size="5" color="#58FA58">Thangalle</font> | <font size="5" color="#AC58FA">Mahargha</font>
+            <font size="5" color="#58FA58"><?php
+                $temp = Voyager::setting('class-3.location','');
+                echo $temp;
+              ?></font> | <font size="5" color="#AC58FA"><?php
+                $temp = Voyager::setting('class-3.name','');
+                echo $temp;
+              ?></font>
             <p>
-              <strong>2018 Revision</strong> <code>12th September</code><br> 08.00 a.m.<br>
+              @if(!empty(Voyager::setting('class-3.b1_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-3.b1_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-3.b1_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-3.b1_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-3.b2_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-3.b2_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-3.b2_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-3.b2_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
+              @if(!empty(Voyager::setting('class-3.b3_name','')))
+                 <strong><?php
+                    $temp = Voyager::setting('class-3.b3_name','');
+                    echo $temp;
+                  ?></strong> <code><?php
+                    $temp = Voyager::setting('class-3.b3_date','');
+                    echo $temp;
+                  ?></code><br><?php
+                    $temp = Voyager::setting('class-3.b3_time','');
+                    echo $temp;
+                  ?><br>
+              @endif
             </p>
           </div>
         </div>
@@ -137,7 +303,10 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Contact Us</h2>
-            <p>Feel free to contact us any time you need</p>
+            <p><?php
+                    $temp = Voyager::setting('contact.message','');
+                    echo $temp;
+                  ?></p>
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 <a href="https://plus.google.com/101980840174982766946" target="_blank" class="btn btn-default btn-lg">
@@ -166,7 +335,7 @@
     <!-- Footer -->
     <footer>
       <div class="container text-center" id="footer">
-        <p>Copyright &copy; 2017. Maths4U. All Rights Reserved.</p>
+        <p>Copyright &copy; 2018. Maths4U. All Rights Reserved.</p>
       </div>
     </footer>
 
